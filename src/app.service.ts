@@ -1,26 +1,29 @@
-import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Duration } from './duration';
 
 @Injectable()
 export class AppService {
   getRideData() {
     const rawData = [
       {
-        provider: "Uber",
-        price: 15.00,
-        duration: "15 mins",
-        carType: "Sedan"
+        id: 1,
+        provider: 'Uber',
+        price: 15.0,
+        duration: '15 mins',
+        carType: 'Sedan',
       },
       {
-        provider: "Bolt",
-        lowPrice: 12.00,
-        highPrice: 18.00,
-        duration: "20 mins",
-        carType: "SUV"
-      }
+        id: 2,
+        provider: 'Bolt',
+        lowPrice: 12.0,
+        highPrice: 18.0,
+        duration: '20 mins',
+        carType: 'SUV',
+      },
     ];
 
     // Normalize data
-    const normalizedData = rawData.map(ride => {
+    const normalizedData = rawData.map((ride) => {
       let price = ride.price;
 
       // If lowPrice and highPrice exist, calculate the average price
@@ -33,16 +36,21 @@ export class AppService {
         throw new HttpException('Invalid data format', HttpStatus.BAD_REQUEST);
       }
 
+      // Parse duration
+      const durationParts = ride.duration.split(' ');
+      const duration = new Duration(
+        parseInt(durationParts[0], 10),
+        durationParts[1],
+      );
+
       return {
         provider: ride.provider,
         price: price,
-        duration: ride.duration,
-        carType: ride.carType
+        duration: duration,
+        carType: ride.carType,
       };
     });
 
     return normalizedData;
   }
 }
-
-

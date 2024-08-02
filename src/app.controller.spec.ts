@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Duration } from './duration';
 
 describe('RideController', () => {
   let rideController: AppController;
@@ -19,8 +20,18 @@ describe('RideController', () => {
 
   it('should return normalized ride data', () => {
     const result = [
-      { provider: 'Uber', price: 15, duration: '15 mins', carType: 'Sedan' },
-      { provider: 'Bolt', price: 15, duration: '20 mins', carType: 'SUV' },
+      {
+        provider: 'Uber',
+        price: 15.0,
+        duration: new Duration(15, 'mins'),
+        carType: 'Sedan',
+      },
+      {
+        provider: 'Bolt',
+        price: 15.0,
+        duration: new Duration(20, 'mins'),
+        carType: 'SUV',
+      },
     ];
 
     jest.spyOn(appService, 'getRideData').mockImplementation(() => result);
