@@ -6,6 +6,7 @@ import { DurationDTO } from './duration';
 import { CarType, RideProvider } from './constant';
 import { UberService } from './uber.service';
 import { BoltService } from './bolt.service';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('RideController', () => {
   let rideController: AppController;
@@ -24,14 +25,14 @@ describe('RideController', () => {
   it('should return normalized ride data', () => {
     const result = [
       {
-        id: 1,
+        id: uuidv4(),
         provider: RideProvider.UBER,
         price: 15.0,
         duration: new DurationDTO(15, 'mins'),
         carType: CarType.SEDAN,
       },
       {
-        id: 2,
+        id: uuidv4(),
         provider: RideProvider.BOLT,
         price: 18.0,
         duration: new DurationDTO(20, 'mins'),

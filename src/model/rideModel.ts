@@ -11,7 +11,7 @@ export class RideModel implements RideEntity {
   }
 
   @IsInt()
-  id!: number;
+  id!: string;
 
   @IsEnum(RideProvider)
   provider!: RideProvider;

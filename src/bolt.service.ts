@@ -3,6 +3,7 @@ import { RideModel } from './model/rideModel';
 import { CarType, RideProvider } from './constant';
 import { DurationDTO } from './duration';
 import { BoltRideModel } from './model/boltRideModel';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class BoltService {
@@ -10,7 +11,7 @@ export class BoltService {
     const data = [
       // We assume that we are fetching this data from an external API
       new BoltRideModel({
-        id: 1,
+        id: uuidv4(),
         price: 18.0,
         rideLength: '15 mins',
         vehicleType: 'Sedan',

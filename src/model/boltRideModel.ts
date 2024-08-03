@@ -9,7 +9,7 @@ export class BoltRideModel {
   }
 
   @IsInt()
-  id!: number;
+  id!: string;
 
   @IsInt()
   price!: number;

@@ -10,7 +10,7 @@ export class UberRideModel {
   }
 
   @IsInt()
-  id!: number;
+  id!: string;
 
   @IsInt()
   lowPrice!: number;
