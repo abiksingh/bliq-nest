@@ -13,7 +13,7 @@ export class BoltService {
       new BoltRideModel({
         id: uuidv4(),
         price: 18.0,
-        rideLength: '15 mins',
+        rideLength: '10 mins',
         vehicleType: 'Sedan',
       }),
     ];
