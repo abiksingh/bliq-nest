@@ -2,7 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Duration } from './duration';
+import { DurationDTO } from './duration';
+import { CarType, RideProvider } from './constant';
+import { UberService } from './uber.service';
+import { BoltService } from './bolt.service';
 
 describe('RideController', () => {
   let rideController: AppController;
@@ -11,7 +14,7 @@ describe('RideController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [AppService, UberService, BoltService],
     }).compile();
 
     rideController = module.get<AppController>(AppController);
@@ -21,16 +24,18 @@ describe('RideController', () => {
   it('should return normalized ride data', () => {
     const result = [
       {
-        provider: 'Uber',
+        id: 1,
+        provider: RideProvider.UBER,
         price: 15.0,
-        duration: new Duration(15, 'mins'),
-        carType: 'Sedan',
+        duration: new DurationDTO(15, 'mins'),
+        carType: CarType.SEDAN,
       },
       {
-        provider: 'Bolt',
-        price: 15.0,
-        duration: new Duration(20, 'mins'),
-        carType: 'SUV',
+        id: 2,
+        provider: RideProvider.BOLT,
+        price: 18.0,
+        duration: new DurationDTO(20, 'mins'),
+        carType: CarType.SUV,
       },
     ];
 
