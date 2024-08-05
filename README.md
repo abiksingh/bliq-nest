@@ -20,7 +20,7 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm run start (Runs the application in development mode (server runs on `localhost:3001`)
 ```
 
 ## Test
