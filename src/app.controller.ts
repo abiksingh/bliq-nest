@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('api/rides')
@@ -7,6 +7,17 @@ export class AppController {
 
   @Get()
   getRideData() {
-    return this.appService.getRideData();
+    try {
+      return this.appService.getRideData();
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        throw new HttpException(
+          'Internal Server Error',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+    }
   }
 }
