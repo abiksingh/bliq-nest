@@ -2,8 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
-import { DurationDTO } from './duration';
-import { CarType, RideProvider } from './constant';
+import { DurationDTO } from './dto/DurationDto';
+import { CarType, RideProvider } from './constants';
 import { UberService } from './providers/uber.service';
 import { BoltService } from './providers/bolt.service';
 

@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UberRideModel } from '../model/uberRideModel';
 import { RideModel } from '../model/rideModel';
-import { CarType, RideProvider } from '../constant';
-import { DurationDTO } from '../duration';
+import { CarType, RideProvider } from '../constants';
+import { DurationDTO } from '../dto/DurationDto';
 
 @Injectable()
 export class UberService {

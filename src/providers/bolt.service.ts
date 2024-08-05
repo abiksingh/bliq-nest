@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RideModel } from '../model/rideModel';
-import { CarType, RideProvider } from '../constant';
-import { DurationDTO } from '../duration';
+import { CarType, RideProvider } from '../constants';
+import { DurationDTO } from '../dto/DurationDto';
 import { BoltRideModel } from '../model/boltRideModel';
 
 @Injectable()

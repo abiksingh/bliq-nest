@@ -1,5 +1,5 @@
 import { IsEnum, IsInt, IsObject, IsString } from 'class-validator';
-import { Duration, RideEntity, RideProvider } from '../constant';
+import { Duration, RideEntity, RideProvider } from '../constants';
 
 export class RideModel implements RideEntity {
   constructor(props: RideModel) {

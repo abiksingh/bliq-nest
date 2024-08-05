@@ -1,4 +1,4 @@
-import { Duration } from './constant';
+import { Duration } from '../constants';
 
 export class DurationDTO implements Duration {
   constructor(
