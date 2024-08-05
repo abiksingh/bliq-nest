@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { BoltService } from './bolt.service';
-import { UberService } from './uber.service';
+import { BoltService } from './providers/bolt.service';
+import { UberService } from './providers/uber.service';
 
 @Injectable()
 export class AppService {

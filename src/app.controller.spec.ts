@@ -4,8 +4,8 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DurationDTO } from './duration';
 import { CarType, RideProvider } from './constant';
-import { UberService } from './uber.service';
-import { BoltService } from './bolt.service';
+import { UberService } from './providers/uber.service';
+import { BoltService } from './providers/bolt.service';
 import { v4 as uuidv4 } from 'uuid';
 
 describe('RideController', () => {

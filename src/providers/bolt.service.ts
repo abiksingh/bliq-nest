@@ -1,27 +1,26 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UberRideModel } from './model/uberRideModel';
-import { RideModel } from './model/rideModel';
-import { CarType, Duration, RideProvider } from './constant';
-import { DurationDTO } from './duration';
+import { RideModel } from '../model/rideModel';
+import { CarType, RideProvider } from '../constant';
+import { DurationDTO } from '../duration';
+import { BoltRideModel } from '../model/boltRideModel';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
-export class UberService {
+export class BoltService {
   getRideData() {
     const data = [
       // We assume that we are fetching this data from an external API
-      new UberRideModel({
+      new BoltRideModel({
         id: uuidv4(),
-        lowPrice: 15.0,
-        highPrice: 20.0,
-        rideLength: '15 mins',
-        carType: 'Sedan',
+        price: 18.0,
+        rideLength: '10 mins',
+        vehicleType: 'Sedan',
       }),
     ];
 
     const result = data.map((ride) => {
-      // Check for missing or malformed data
-      if (!ride.rideLength || !ride.carType) {
+      // Checking for missing or malformed data
+      if (!ride.rideLength || !ride.vehicleType) {
         throw new HttpException('Invalid data format', HttpStatus.BAD_REQUEST);
       }
 
@@ -31,22 +30,20 @@ export class UberService {
         durationParts[1],
       );
 
-      const averagePrice = (ride.lowPrice + ride.highPrice) / 2;
-
       return new RideModel({
         id: ride.id,
-        provider: RideProvider.UBER,
-        price: averagePrice,
+        provider: RideProvider.BOLT,
+        price: ride.price,
         duration: duration,
-        carType: this.convertCarType(ride.carType),
+        carType: this.convertVehicleType(ride.vehicleType),
       });
     });
 
     return result;
   }
 
-  private convertCarType(carType: string): CarType {
-    switch (carType) {
+  private convertVehicleType(vehicleType: string): CarType {
+    switch (vehicleType) {
       case 'Sedan':
         return CarType.SEDAN;
       case 'SUV':
