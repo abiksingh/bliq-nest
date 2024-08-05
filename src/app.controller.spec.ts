@@ -65,7 +65,7 @@ describe('RideController', () => {
     try {
       rideController.getRideData();
     } catch (error) {
-      expect(error.message).toBe('Internal Server Error');
+      expect(error.message).toBe('Unexpected Error');
     }
   });
 });

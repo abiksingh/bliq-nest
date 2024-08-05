@@ -14,7 +14,7 @@ export class AppController {
         throw error;
       } else {
         throw new HttpException(
-          'Internal Server Error',
+          error.message || 'Internal Server Error',
           HttpStatus.INTERNAL_SERVER_ERROR,
         );
       }
