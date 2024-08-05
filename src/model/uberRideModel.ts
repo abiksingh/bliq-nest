@@ -1,4 +1,4 @@
-import { IsDate, IsEnum, IsInt, IsString } from 'class-validator';
+import { IsInt, IsString } from 'class-validator';
 
 export class UberRideModel {
   constructor(props: UberRideModel) {
