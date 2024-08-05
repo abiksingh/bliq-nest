@@ -21,10 +21,6 @@ describe('RideController', () => {
     appService = module.get<AppService>(AppService);
   });
 
-  jest.mock('uuid', () => ({
-    v4: jest.fn(),
-  }));
-
   it('should return normalized ride data', () => {
     const result = [
       {
