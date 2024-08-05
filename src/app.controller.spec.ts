@@ -6,7 +6,6 @@ import { DurationDTO } from './duration';
 import { CarType, RideProvider } from './constant';
 import { UberService } from './providers/uber.service';
 import { BoltService } from './providers/bolt.service';
-import { v4 as uuidv4 } from 'uuid';
 
 describe('RideController', () => {
   let rideController: AppController;
@@ -22,17 +21,21 @@ describe('RideController', () => {
     appService = module.get<AppService>(AppService);
   });
 
+  jest.mock('uuid', () => ({
+    v4: jest.fn(),
+  }));
+
   it('should return normalized ride data', () => {
     const result = [
       {
-        id: uuidv4(),
+        id: '9101d4f9-162b-4554-a770-af92a190dc43',
         provider: RideProvider.UBER,
         price: 15.0,
         duration: new DurationDTO(15, 'mins'),
         carType: CarType.SEDAN,
       },
       {
-        id: uuidv4(),
+        id: '9b2d1f42-f786-40b9-9604-84d3f4b5c713',
         provider: RideProvider.BOLT,
         price: 18.0,
         duration: new DurationDTO(20, 'mins'),

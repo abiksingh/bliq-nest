@@ -1,9 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UberRideModel } from '../model/uberRideModel';
 import { RideModel } from '../model/rideModel';
-import { CarType, Duration, RideProvider } from '../constant';
+import { CarType, RideProvider } from '../constant';
 import { DurationDTO } from '../duration';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class UberService {
@@ -11,7 +10,7 @@ export class UberService {
     const data = [
       // We assume that we are fetching this data from an external API
       new UberRideModel({
-        id: uuidv4(),
+        id: '9b2d1f42-f786-40b9-9604-84d3f4b5c713',
         lowPrice: 15.0,
         highPrice: 20.0,
         rideLength: '15 mins',
